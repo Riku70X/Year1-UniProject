@@ -3,5 +3,5 @@ class Game
 {
 public:
 	bool inBattle;
-	int enemiesDefeated;
+	short enemiesDefeated;
 };

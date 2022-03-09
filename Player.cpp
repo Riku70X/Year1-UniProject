@@ -1,11 +1,11 @@
 #include "Player.h"
 
-void Player::takeDamage(int damage)
+void Player::takeDamage(short damage)
 {
 	health -= damage;
 }
 
-int Player::getAttackDamage()
+short Player::getAttackDamage()
 {
 	return ((rand() % 41) + 80);
 }
