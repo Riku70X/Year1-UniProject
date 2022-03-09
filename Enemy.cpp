@@ -1,18 +1,19 @@
 #include "Enemy.h"
 
-void Enemy::takeDamage(short)
+Enemy::Enemy()
 {
+	healthPoints = 0;
+	name = "Null";
+	attackStat = 0;
+	damageMultipler = 0;
+}
+
+void Enemy::takeDamage(short damage)
+{
+	healthPoints -= damage;
 }
 
 short Enemy::getAttackDamage()
 {
-	return 0;
-}
-
-Enemy::Enemy()
-{
-	health = 0;
-	name = "Null";
-	attackStat = 0;
-	damageMultipler = 0;
+	return ((rand() % 30) + 1);
 }
