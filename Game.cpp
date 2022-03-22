@@ -15,12 +15,5 @@ Game::~Game()
 
 void Game::spawnEnemy(short type)
 {
-	enemy = new Enemy;
-	switch (type)
-	{
-	case 0:
-
-	default:
-
-	}
+	enemy = new Enemy(type);
 }

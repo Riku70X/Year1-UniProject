@@ -7,10 +7,10 @@ using namespace std; // including libraries so that the class can generate rando
 class Player
 {
 public:
-	short healthPoints;
-	short magicPoints;
-	string currentAction;
+	short healthPoints; // player health
+	short magicPoints; // player magic
+	string currentAction; 
 	Player();
-	void takeDamage(short damage); // reduces health by the value passed through "damage"
+	void takeDamage(short damage); // reduces healthPoints by the value passed through "damage"
 	short getAttackDamage(); // returns a random integer between 80 and 120
 };

@@ -2,10 +2,10 @@
 
 Player::Player()
 {
-	healthPoints = 100;
-	magicPoints = 100;
+	healthPoints = 10000;
+	magicPoints = 200;
 	currentAction = "Null";
-}
+} // Player stats when the game begins
 
 void Player::takeDamage(short damage)
 {

@@ -6,5 +6,5 @@
 
 int main()
 {
-    srand(time(NULL));
+    srand(time(NULL)); // sets a new random seed every time the game is loaded.
 }
