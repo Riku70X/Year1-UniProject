@@ -29,5 +29,5 @@ void Enemy::takeDamage(short damage)
 
 short Enemy::getAttackDamage()
 {
-	return ((rand() % 30) + 1);
+	return ((rand() % 30) + attackStat);
 }

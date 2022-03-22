@@ -3,7 +3,7 @@
 Player::Player()
 {
 	healthPoints = 10000;
-	magicPoints = 200;
+	magicPoints = 50;
 	currentAction = "Null";
 } // Player stats when the game begins
 
