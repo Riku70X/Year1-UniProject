@@ -16,4 +16,5 @@ Game::~Game()
 void Game::spawnEnemy(short type)
 {
 	enemy = new Enemy(type);
+	cout << "A " << enemy->getName() << " has appeared!\n";
 }
