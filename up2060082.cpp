@@ -2,6 +2,9 @@
 //
 
 #include "Game.h"
+#include <windows.h>
+
+void ClearScreen();
 
 int main()
 {
@@ -14,6 +17,7 @@ int main()
         cout << "Player health: " << theGame.player.getHealth() << "           Player Magic: " << theGame.player.getMagic() << endl
             << "Enemy health: " << theGame.enemy->getHealth() << endl << "Enter a command: "; // Displays player health, magic and enemy health
         cin >> currentAction;
+        ClearScreen();
         theGame.enemy->takeDamage(theGame.player.getAttackDamage(currentAction), currentAction); // Reduces enemy health
         theGame.player.takeDamage(theGame.enemy->getAttackDamage()); // Reduces player health
         cout << endl;
@@ -60,6 +64,7 @@ int main()
                 break;
             }
         }
+        
     }
     if (theGame.dragonDefeated)
     {
@@ -69,4 +74,41 @@ int main()
     {
         cout << "\nGAME OVER\n\n";
     }
+}
+
+void ClearScreen()
+{
+    HANDLE                     hStdOut;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    DWORD                      count;
+    DWORD                      cellCount;
+    COORD                      homeCoords = { 0, 0 };
+
+    hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hStdOut == INVALID_HANDLE_VALUE) return;
+
+    /* Get the number of cells in the current buffer */
+    if (!GetConsoleScreenBufferInfo(hStdOut, &csbi)) return;
+    cellCount = csbi.dwSize.X * csbi.dwSize.Y;
+
+    /* Fill the entire buffer with spaces */
+    if (!FillConsoleOutputCharacter(
+        hStdOut,
+        (TCHAR)' ',
+        cellCount,
+        homeCoords,
+        &count
+    )) return;
+
+    /* Fill the entire buffer with the current colors and attributes */
+    if (!FillConsoleOutputAttribute(
+        hStdOut,
+        csbi.wAttributes,
+        cellCount,
+        homeCoords,
+        &count
+    )) return;
+
+    /* Move the cursor home */
+    SetConsoleCursorPosition(hStdOut, homeCoords);
 }
