@@ -1,6 +1,6 @@
 #pragma once
 #include "Player.h"
-#include "Enemy.h"
+#include "Dragon.h"
 
 class Game
 {
@@ -12,5 +12,6 @@ public:
 	bool dragonDefeated; // becomes true when the dragon is defeated. Determines whether a Victory or Game Over screen loads when the gameplay loop is exited.
 	Game();
 	~Game();
-	void spawnEnemy(short type); // spawns a new Enemy based on the short passed through.
+	void createEnemy(short type); // spawns a new Enemy based on the short passed through.
+	void spawnEnemy();
 };

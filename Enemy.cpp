@@ -55,6 +55,8 @@ Enemy::Enemy(short type)
 		weaknesses.push_back("thunder");
 		resistances.push_back("strike");
 		break;
+	case 4:
+		name = "Dragon";
 	default: // This should also never run. If a default enemy spawns, I know there is an issue in the code.
 		name = "Default";
 		healthPoints = 0;
@@ -69,6 +71,7 @@ Enemy::Enemy(short type)
 
 void Enemy::takeDamage(short damage, string action)
 {
+	cout << "enemy called\n";
 	attackNormal = true;
 	for (string weakness : weaknesses)
 	{

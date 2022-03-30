@@ -16,7 +16,7 @@ public:
 	void takeDamage(short damage, string action); // reduces healthPoints by the value passed through "damage"
 	short getAttackDamage(); // returns a random integer between 1 and 30, added to the enemy's attackStat
 
-private:
+protected:
 	string name;
 	short healthPoints; // enemy health
 	short attackStat; // base attack of the enemy. getAttackDamage adds some variation
