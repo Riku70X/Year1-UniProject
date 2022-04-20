@@ -17,4 +17,7 @@ public:
 private:
 	short healthPoints; // player health
 	short magicPoints; // player magic
+	short numberOfPotions; // limited healing item
+	short numberOfEthers; // limited mp recovering item
+	short numberOfBottleRockets; // limited damage dealing item
 };

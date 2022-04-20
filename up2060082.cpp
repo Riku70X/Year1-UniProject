@@ -5,6 +5,7 @@
 #include <windows.h>
 
 void ClearScreen(); // ClearScreen function prototype. Function taken from https://www.cplusplus.com/articles/4z18T05o/
+bool isValid(string action);
 
 int main()
 {
@@ -24,6 +25,25 @@ int main()
         if (theGame.player.getHealth() <= 0)
         {
             theGame.inBattle = false;
+            break;
+        } // Game ends if the player reaches 0 health
+        if (theGame.enemy->getHealth() <= 0)
+        {
+            theGame.spawnEnemy();
+        } // Spawns a new enemy if the current enemy reaches 0 health
+    }
+    while (theGame.inDragonBattle)
+    {
+        cout << "Player health: " << theGame.player.getHealth() << "           Player Magic: " << theGame.player.getMagic() << endl
+            << "Dragon health: " << theGame.dragon.getHealth() << endl << "Enter a command: "; // Displays player health, magic and dragon health
+        cin >> currentAction;
+        ClearScreen(); // clears all text from the screen
+        theGame.dragon.takeDamage(theGame.player.getAttackDamage(currentAction), currentAction); // Reduces dragon health
+        theGame.player.takeDamage(theGame.dragon.getAttackDamage()); // Reduces player health
+        cout << endl;
+        if (theGame.player.getHealth() <= 0)
+        {
+            theGame.inDragonBattle = false;
             break;
         } // Game ends if the player reaches 0 health
         if (theGame.enemy->getHealth() <= 0)
@@ -76,4 +96,18 @@ void ClearScreen()
 
     /* Move the cursor home */
     SetConsoleCursorPosition(hStdOut, homeCoords);
+}
+
+bool isValid(string action)
+{
+    string validActions[8] = { "strike", "fire", "blizzard", "thunder", "potion", "ether", "bottlerocket", "quit" };
+    for (int x = 0; x < 8; x++)
+    {
+        if (action == validActions[x])
+        {
+            return true;
+            break;
+        }
+    }
+    return false;
 }

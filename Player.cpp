@@ -14,6 +14,9 @@ Player::Player()
 {
 	healthPoints = 10000;
 	magicPoints = 50;
+	numberOfPotions = 10;
+	numberOfEthers = 5;
+	numberOfBottleRockets = 2;
 } // Player stats when the game begins
 
 void Player::takeDamage(short damage)
@@ -42,6 +45,10 @@ short Player::getAttackDamage(string action)
 	{
 		magicPoints -= 5;
 		return ((rand() % 151) + 350); // returns a random value from 350-500
+	}
+	else if (action == "potion")
+	{
+		return 0;
 	}
 	else
 	{

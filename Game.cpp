@@ -4,6 +4,7 @@ Game::Game()
 {
 	enemy = new Enemy;
 	inBattle = true;
+    inDragonBattle = false;
 	enemiesDefeated = 0;
 	dragonDefeated = false;
 }
@@ -16,16 +17,8 @@ Game::~Game()
 
 void Game::createEnemy(short type)
 {
-	if (type == 4)
-	{
-		enemy = new Dragon();
-		cout << "The Great Dragon has appeared!!!\n";
-	}
-	else
-	{
-		enemy = new Enemy(type);
-		cout << "A " << enemy->getName() << " has appeared!\n";
-	}
+	enemy = new Enemy(type);
+	cout << "A " << enemy->getName() << " has appeared!\n";
 }
 
 void Game::spawnEnemy()
@@ -55,10 +48,12 @@ void Game::spawnEnemy()
         createEnemy(rand() % 4); // spawns either a slime, a puppet, a witch or a mech
         break;
     case 10:
-        createEnemy(4); // spawns the Dragon 
+        inBattle = false; 
+        inDragonBattle = true; // allows the game to move on to the second gameplay loop, where the dragon is fought
+        cout << "The Great Dragon has appeared!!!\n";
         break;
     case 11:
-        inBattle = false;
+        inDragonBattle = false;
         dragonDefeated = true;
         break; // Game ends if the dragon is defeated
     default:
