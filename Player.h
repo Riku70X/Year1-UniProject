@@ -10,6 +10,9 @@ class Player
 public:
 	short getHealth();
 	short getMagic();
+	short getPotionCount();
+	short getEtherCount();
+	short getBottleRocketCount();
 	Player();
 	void takeDamage(short damage); // reduces healthPoints by the value passed through "damage"
 	short getAttackDamage(string action); // returns the attack damage of the player for that turn

@@ -29,7 +29,6 @@ short Dragon::getAttackDamage()
 
 void Dragon::takeDamage(short damage, string action)
 {
-	cout << "dragon called\n";
 	attackNormal = true;
 	for (string weakness : weaknesses)
 	{
@@ -43,7 +42,7 @@ void Dragon::takeDamage(short damage, string action)
 			break;
 		}
 	}
-	if (action == "fire")
+	if (action == "Fire")
 	{
 		attackNormal = false;
 		cout << "The Dragon absorbed the attack!\n";

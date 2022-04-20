@@ -23,7 +23,7 @@ void Game::createEnemy(short type)
 
 void Game::spawnEnemy()
 {
-    enemiesDefeated = 10;//theGame.enemiesDefeated++;
+    enemiesDefeated++;
     switch (enemiesDefeated)
     {
     case 1:
@@ -52,10 +52,6 @@ void Game::spawnEnemy()
         inDragonBattle = true; // allows the game to move on to the second gameplay loop, where the dragon is fought
         cout << "The Great Dragon has appeared!!!\n";
         break;
-    case 11:
-        inDragonBattle = false;
-        dragonDefeated = true;
-        break; // Game ends if the dragon is defeated
     default:
         cout << "Spawning Error\n";
         break;

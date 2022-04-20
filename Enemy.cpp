@@ -28,14 +28,14 @@ Enemy::Enemy(short type)
 		healthPoints = 300;
 		attackStat = 70;
 		weaknessDamageMultipler = 1.5f;
-		weaknesses.push_back("blizzard");
+		weaknesses.push_back("Blizzard");
 		break;
 	case 1:
 		name = "Puppet";
 		healthPoints = 500;
 		attackStat = 150;
 		weaknessDamageMultipler = 2;
-		weaknesses.push_back("fire");
+		weaknesses.push_back("Fire");
 		break;
 	case 2:
 		name = "Witch";
@@ -43,8 +43,8 @@ Enemy::Enemy(short type)
 		attackStat = 350;
 		weaknessDamageMultipler = 1.2f;
 		resistanceDamageMultiplier = .3f;
-		weaknesses.push_back("strike");
-		resistances.push_back("fire"); resistances.push_back("blizzard"); resistances.push_back("thunder");
+		weaknesses.push_back("Strike");
+		resistances.push_back("Fire"); resistances.push_back("Blizzard"); resistances.push_back("Thunder");
 		break;
 	case 3:
 		name = "Mech";
@@ -52,8 +52,8 @@ Enemy::Enemy(short type)
 		attackStat = 500;
 		weaknessDamageMultipler = 1.5f;
 		resistanceDamageMultiplier = .8f;
-		weaknesses.push_back("thunder");
-		resistances.push_back("strike");
+		weaknesses.push_back("Thunder");
+		resistances.push_back("Strike");
 		break;
 	case 4:
 		name = "Dragon";
@@ -71,7 +71,6 @@ Enemy::Enemy(short type)
 
 void Enemy::takeDamage(short damage, string action)
 {
-	cout << "enemy called\n";
 	attackNormal = true;
 	for (string weakness : weaknesses)
 	{
