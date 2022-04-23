@@ -55,8 +55,6 @@ Enemy::Enemy(short type)
 		weaknesses.push_back("Thunder");
 		resistances.push_back("Strike");
 		break;
-	case 4:
-		name = "Dragon";
 	default: // This should also never run. If a default enemy spawns, I know there is an issue in the code.
 		name = "Default";
 		healthPoints = 0;
@@ -72,7 +70,7 @@ Enemy::Enemy(short type)
 void Enemy::takeDamage(short damage, string action)
 {
 	attackNormal = true;
-	for (string weakness : weaknesses)
+	for (string weakness : weaknesses) // The for loop will run once for every item in the vector "weaknesses", with "weakness" iterating over the elements each loop.
 	{
 		if (weakness == action)
 		{
@@ -82,9 +80,9 @@ void Enemy::takeDamage(short damage, string action)
 			healthPoints -= damage;
 			cout << name << " took " << damage << " damage!\n";
 			break;
-		}
+		} // Enemy takes more damage if the current action matches one of the enemy's weaknesses.
 	}
-	for (string resistance : resistances)
+	for (string resistance : resistances) // The for loop will run once for every item in the vector "resistances", with "resistance" iterating over the elements each loop.
 	{
 		if (resistance == action)
 		{
@@ -94,7 +92,7 @@ void Enemy::takeDamage(short damage, string action)
 			healthPoints -= damage;
 			cout << name << " took " << damage << " damage!\n";
 			break;
-		}
+		} // Enemy takes less damage if the current action matches one of the enemy's resistance.
 	}
 	if (attackNormal)
 	{
