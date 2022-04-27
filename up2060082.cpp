@@ -21,7 +21,7 @@ int main()
             cout << "Player health: " << theGame.player.getHealth() << "           Player Magic: " << theGame.player.getMagic() << endl
                 << "Enemy health: " << theGame.enemy->getHealth() << endl << message << endl << "Enter a command: "; // Displays player health, magic and enemy health.
             cin >> currentAction;
-            ClearScreen(); // clears all text from the screen
+            ClearScreen(); // Clears all text from the screen.
         } while (!isValid(currentAction, theGame.player.getMagic(), theGame.player.getPotionCount(), theGame.player.getEtherCount(), theGame.player.getBottleRocketCount(), message)); // This loop repeats if the player enters an invalid command.
         if (currentAction == "Quit") // I chose to make this command specific, as I didn't want the player to accidentally type "q" and end the game.
         {
