@@ -31,7 +31,7 @@ Player::Player()
 	magicPoints = 50;
 	numberOfPotions = 10;
 	numberOfEthers = 5;
-	numberOfBottleRockets = 2;
+	numberOfBottleRockets = 3;
 } // Player stats when the game begins.
 
 void Player::takeDamage(short damage)

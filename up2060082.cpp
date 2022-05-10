@@ -3,7 +3,7 @@
 
 #include "Game.h" // Also includes things like <iostream> and namespace std, which is why they don't need to be included separately.
 #include <windows.h> // Needed for ClearScreen(), a function I do not own.
-const int NUM_OF_VALID_INPUTS = 38;
+const int NUM_OF_VALID_INPUTS = 40;
 
 void ClearScreen(); // ClearScreen function prototype. Function taken from https://www.cplusplus.com/articles/4z18T05o/
 bool isValid(string &action, short mp, short potions, short ethers, short bottlerockets, string &message); // Takes a string and several limited resources as input, and returns true if it is a valid command.
@@ -39,6 +39,7 @@ int main()
         } // Game ends if the player reaches 0 health.
         if (theGame.enemy->getHealth() <= 0)
         {
+            cout << theGame.enemy->getName() << " has been defeated!\n";
             theGame.spawnEnemy();
         } // Spawns a new enemy if the current enemy reaches 0 health.
     }
@@ -120,7 +121,7 @@ void ClearScreen()
 bool isValid(string &action, short mp, short potions, short ethers, short bottlerockets, string &message)
 {
     string validActions[NUM_OF_VALID_INPUTS] = {"Quit", "strike", "Strike", "STRIKE", "s", "S", "fire", "Fire", "FIRE", "f", "F", "blizzard", "Blizzard", "b", "B", "BLIZZARD", "thunder", "Thunder", 
-        "THUNDER", "t", "T", "potion", "Potion", "POTION", "p", "P", "ether", "Ether", "ETHER", "e", "E", "bottlerocket", "Bottlerocket", "BottleRocket", "bottleRocket", "BOTTLEROCKET", "b", "B", }; // List of valid inputs.
+        "THUNDER", "t", "T", "potion", "Potion", "POTION", "p", "P", "ether", "Ether", "ETHER", "e", "E", "bottlerocket", "Bottlerocket", "BottleRocket", "bottleRocket", "BOTTLEROCKET", "br", "Br", "BR", "bR"}; // List of valid inputs.
     for (int x = 0; x < NUM_OF_VALID_INPUTS; x++)
     {
         if (action == validActions[x])
@@ -135,6 +136,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
             case 3:
             case 4:
             case 5:
+                message = "";
                 action = "Strike"; // These lines of code generalise the functions. So, if the player enters "s", "S", "strike" or "STRIKE", the game reads it as "Strike"
                 return true;
                 break;
@@ -151,6 +153,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                 } // Fire costs 3mp, so the code returns 'false' and gives an appropriate message if the player has less than 3 mp.
                 else
                 {
+                    message = "";
                     action = "Fire";
                     return true;
                     break;
@@ -168,6 +171,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                 } // Blizzard costs 4mp, so the code returns 'false' and gives an appropriate message if the player has less than 4 mp.
                 else
                 {
+                    message = "";
                     action = "Blizzard";
                     return true;
                     break;
@@ -185,6 +189,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                 } // Thunder costs 5mp, so the code returns 'false' and gives an appropriate message if the player has less than 5 mp.
                 else
                 {
+                    message = "";
                     action = "Thunder";
                     return true;
                     break;
@@ -202,6 +207,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                 } // Player can't use a potion if they don't have any.
                 else
                 {
+                    message = "";
                     action = "Potion";
                     return true;
                     break;
@@ -219,6 +225,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                 } // Player can't use an ether if they don't have any.
                 else
                 {
+                    message = "";
                     action = "Ether";
                     return true;
                     break;
@@ -230,6 +237,8 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
             case 35:
             case 36:
             case 37:
+            case 38:
+            case 39:
                 if (bottlerockets == 0)
                 {
                     message = "No bottle rockets remaining";
@@ -238,6 +247,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                 } // Player can't use a bottle rocket if they don't have any.
                 else
                 {
+                    message = "";
                     action = "BottleRocket";
                     return true;
                     break;

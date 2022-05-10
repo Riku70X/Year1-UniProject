@@ -76,40 +76,8 @@ Enemy::Enemy(short type)
 	}
 }
 
-
-
-void Enemy::takeDamage(short damage, string action)
+void Enemy::runStatusCheck(string action)
 {
-	attackNormal = true;
-	for (string weakness : weaknesses) // The for loop will run once for every item in the vector "weaknesses", with "weakness" iterating over the elements each loop.
-	{
-		if (weakness == action)
-		{
-			attackNormal = false;
-			cout << "It's Super Effective!\n";
-			damage *= weaknessDamageMultipler;
-			healthPoints -= damage;
-			cout << name << " took " << damage << " damage!\n";
-			break;
-		} // Enemy takes more damage if the current action matches one of the enemy's weaknesses.
-	}
-	for (string resistance : resistances) // The for loop will run once for every item in the vector "resistances", with "resistance" iterating over the elements each loop.
-	{
-		if (resistance == action)
-		{
-			attackNormal = false;
-			cout << "It's not very effective...\n";
-			damage *= resistanceDamageMultiplier;
-			healthPoints -= damage;
-			cout << name << " took " << damage << " damage!\n";
-			break;
-		} // Enemy takes less damage if the current action matches one of the enemy's resistance.
-	}
-	if (attackNormal)
-	{
-		healthPoints -= damage;
-		cout << name << " took " << damage << " damage!\n";
-	}
 	if (statusCounter == 0) // When the counter reaches 0, current status effects will stop, and the enemy is now able to get a new status effect.
 	{
 		if (burning)
@@ -154,14 +122,61 @@ void Enemy::takeDamage(short damage, string action)
 		if (burning)
 		{
 			healthPoints -= (maxHealth * (rand() % 5 + 2) / 100); // Burn deals 2%-6% of the enemy's health.
-			cout << name << " took burn damage!";
+			cout << name << " took burn damage!\n";
 		}
 		statusCounter--; // If it is not 0, then it decrements each turn until it is.
 	}
-	
+}
+
+void Enemy::takeDamage(short damage, string action)
+{
+	attackNormal = true;
+	for (string weakness : weaknesses) // The for loop will run once for every item in the vector "weaknesses", with "weakness" iterating over the elements each loop.
+	{
+		if (weakness == action)
+		{
+			attackNormal = false;
+			cout << "It's Super Effective!\n";
+			damage *= weaknessDamageMultipler;
+			healthPoints -= damage;
+			cout << name << " took " << damage << " damage!\n";
+			break;
+		} // Enemy takes more damage if the current action matches one of the enemy's weaknesses.
+	}
+	for (string resistance : resistances) // The for loop will run once for every item in the vector "resistances", with "resistance" iterating over the elements each loop.
+	{
+		if (resistance == action)
+		{
+			attackNormal = false;
+			cout << "It's not very effective...\n";
+			damage *= resistanceDamageMultiplier;
+			healthPoints -= damage;
+			cout << name << " took " << damage << " damage!\n";
+			break;
+		} // Enemy takes less damage if the current action matches one of the enemy's resistance.
+	}
+	if (attackNormal)
+	{
+		healthPoints -= damage;
+		cout << name << " took " << damage << " damage!\n";
+	}
+	runStatusCheck(action);
 }
 
 short Enemy::getAttackDamage()
 {
-	return ((rand() % 31) + attackStat);
+	if (frozen)
+	{
+		cout << name << " is frozen! Cannot attack!\n";
+		return 0;
+	}  // Enemy deals 0 damage if they are frozen.
+	else if (paralysed && rand() % 2 == 1) // 50% chance to miss.
+	{
+		cout << name << " flinched due to paralysis! Attack failed!\n";
+		return 0;
+	} // Enemy has a 50% chance to deal 0 damage if they are paralysed.
+	else
+	{
+		return ((rand() % 31) + attackStat);
+	}
 }

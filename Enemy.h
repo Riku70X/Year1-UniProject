@@ -13,8 +13,10 @@ public:
 	short getHealth(); // Accessors for protected variables.
 	Enemy();
 	Enemy(short type); // Overloaded constructor used to set up unique enemies.
+	void runStatusCheck(string action); // Checks if the enemy has a status effect, and applies new status effects if conditions are met.
 	void takeDamage(short damage, string action); // Reduces healthPoints by the value passed through "damage". This value is increased/decreased if the enemy is weak to/resists the current action.
 	short getAttackDamage(); // Returns the enemy's attackStat, with an added random integer between 0 and 30 for variance.
+	
 
 protected: // Protected so that the Dragon class can still reach them.
 	string name;
