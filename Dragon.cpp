@@ -44,7 +44,7 @@ void Dragon::takeDamage(short damage, string action)
 short Dragon::getAttackDamage()
 {
 	currentTurn++;
-	if (currentTurn > 15 && hasHealed == false && rand() % 10 == 9) // For the Dragon to heal, 15 turns must have passed. After this, the Dragon has a 10% chance every turn to heal itself. If successful, it will never heal again.
+	if (currentTurn > 15 && healthPoints<=9000 && hasHealed == false && rand() % 10 == 9) // For the Dragon to heal, 15 turns must have passed, and the dragon must have under 9000 health. After this, the Dragon has a 10% chance every turn to heal itself. If successful, it will never heal again.
 	{
 		healthPoints += 1000;
 		cout << "The Dragon has cauterised it's wounds!\nThe Dragon has healed 1000HP!\n";
