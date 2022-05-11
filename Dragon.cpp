@@ -5,8 +5,8 @@ Dragon::Dragon()
 	name = "Dragon";
 	healthPoints = 10000;
 	attackStat = 1500;
-	weaknessDamageMultipler = 2.5f;
-	weaknesses.push_back("bottleRocket");
+	weaknessDamageMultipler = 1.5f;
+	weaknesses.push_back("BottleRocket");
 	hasHealed = false;
 	currentTurn = 0;
 }
@@ -44,7 +44,7 @@ void Dragon::takeDamage(short damage, string action)
 short Dragon::getAttackDamage()
 {
 	currentTurn++;
-	if (currentTurn > 15 && healthPoints<=9000 && hasHealed == false && rand() % 10 == 9) // For the Dragon to heal, 15 turns must have passed, and the dragon must have under 9000 health. After this, the Dragon has a 10% chance every turn to heal itself. If successful, it will never heal again.
+	if ((currentTurn > 15) && (healthPoints <= 9000) && (hasHealed == false) && ((rand() % 10) == 9)) // For the Dragon to heal, 15 turns must have passed, and the dragon must have under 9000 health. After this, the Dragon has a 10% chance every turn to heal itself. If successful, it will never heal again.
 	{
 		healthPoints += 1000;
 		cout << "The Dragon has cauterised it's wounds!\nThe Dragon has healed 1000HP!\n";
@@ -58,7 +58,7 @@ short Dragon::getAttackDamage()
 			cout << name << " is frozen! Cannot attack!\n";
 			return 0;
 		}  // Dragon deals 0 damage if it is frozen.
-		else if (paralysed && rand() % 2 == 1) // 50% chance to miss.
+		else if (paralysed && ((rand() % 2) == 1)) // 50% chance to miss.
 		{
 			cout << name << " flinched due to paralysis! Attack failed!\n";
 			return 0;

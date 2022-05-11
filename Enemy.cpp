@@ -97,22 +97,22 @@ void Enemy::runStatusCheck(string action)
 		}
 		else
 		{
-			if (action == "Fire" && (rand() % 100) < 40) // 40% chance to burn.
+			if (action == "Fire" && ((rand() % 100) < 40)) // 40% chance to burn.
 			{
 				burning = true;
-				statusCounter = (rand() % 4) + 1; // Burn lasts for 1-4 turns.
+				statusCounter = ((rand() % 4) + 1); // Burn lasts for 1-4 turns.
 				cout << name << " started burning!\n";
 			}
-			else if (action == "Blizzard" && (rand() % 100) < 20) // 20% chance to freeze.
+			else if (action == "Blizzard" && ((rand() % 100) < 20)) // 20% chance to freeze.
 			{
 				frozen = true;
-				statusCounter = (rand() % 1) + 2; // Freeze lasts for 2-3 turns.
+				statusCounter = ((rand() % 1) + 2); // Freeze lasts for 2-3 turns.
 				cout << name << " was frozen solid!\n";
 			}
-			else if (action == "Thunder" && (rand() % 100) < 30) // 30% chance to paralyse.
+			else if (action == "Thunder" && ((rand() % 100) < 30)) // 30% chance to paralyse.
 			{
 				paralysed = true;
-				statusCounter = (rand() % 3) + 2; // Paralysis lasts for 2-4 turns.
+				statusCounter = ((rand() % 3) + 2); // Paralysis lasts for 2-4 turns.
 				cout << name << " was paralysed!\n";
 			}
 		}
@@ -121,7 +121,7 @@ void Enemy::runStatusCheck(string action)
 	{
 		if (burning)
 		{
-			healthPoints -= (maxHealth * (rand() % 5 + 2) / 100); // Burn deals 2%-6% of the enemy's health.
+			healthPoints -= (maxHealth * ((rand() % 5 + 2) / 100)); // Burn deals 2%-6% of the enemy's health.
 			cout << name << " took burn damage!\n";
 		}
 		statusCounter--; // If it is not 0, then it decrements each turn until it is.
@@ -170,7 +170,7 @@ short Enemy::getAttackDamage()
 		cout << name << " is frozen! Cannot attack!\n";
 		return 0;
 	}  // Enemy deals 0 damage if they are frozen.
-	else if (paralysed && rand() % 2 == 1) // 50% chance to miss.
+	else if (paralysed && ((rand() % 2) == 1)) // 50% chance to miss.
 	{
 		cout << name << " flinched due to paralysis! Attack failed!\n";
 		return 0;
@@ -178,5 +178,5 @@ short Enemy::getAttackDamage()
 	else
 	{
 		return ((rand() % 31) + attackStat);
-	}
+	} // Otherwise, Enemy will attack with their attack stat, plus a random value up to 30 for variance.
 }

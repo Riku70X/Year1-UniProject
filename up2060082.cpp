@@ -253,7 +253,7 @@ bool isValid(string &action, short mp, short potions, short ethers, short bottle
                     break;
                 }
             default:
-                cout << "VALIDATION ERROR"; // Code should never run ideally
+                cout << "VALIDATION ERROR"; // Code should never run ideally.
                 return false;
                 break;
             }
